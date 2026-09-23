@@ -1,0 +1,195 @@
+/* ============================================
+   CLIENTS SECTION — CONTINUOUS LOGO MARQUEE
+   ============================================ */
+
+.clients {
+  position: relative;
+  background: #FFFFFF;
+  padding: 85px 0 95px;
+  overflow: hidden;
+}
+
+/* Header Container */
+.clients__header-container {
+  position: relative;
+  z-index: 5;
+}
+
+.clients__header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+
+.eyebrow-pill,
+.clients__eyebrow-pill {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  white-space: nowrap !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  color: #0075FA !important;
+  background: #EFF6FF !important;
+  border: 1.5px solid #BFDBFE !important;
+  padding: 10px 28px !important;
+  border-radius: 999px !important;
+  margin-bottom: 22px !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 4px 12px rgba(0, 117, 250, 0.12) !important;
+}
+
+.clients__eyebrow-pill svg,
+.eyebrow-pill svg {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.clients__title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #0F172A;
+  margin-bottom: 16px;
+}
+
+.text-blue-accent {
+  color: #0075FA;
+  position: relative;
+  display: inline-block;
+}
+
+.text-blue-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #0075FA, #38BDF8);
+  border-radius: 2px;
+}
+
+.clients__sub {
+  font-size: 16px;
+  color: #64748B;
+  line-height: 1.6;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* Showcase Stage */
+.clients__showcase-stage {
+  position: relative;
+  width: 100%;
+  z-index: 4;
+  margin-top: 12px;
+}
+
+
+/* Continuous Horizontal Marquee Container */
+.clients__marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.clients__marquee-track {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px; /* Gap between cards (28-36px) */
+  width: max-content;
+  animation: continuousClientsMarquee 48s linear infinite;
+  will-change: transform;
+  padding: 12px 32px 12px 0; /* Match right padding to gap for seamless loop */
+}
+
+/* Pause on Hover */
+.clients__marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes continuousClientsMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Single Client Item (Card + Company Label) */
+.clients__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Desktop Logo Card (180px x 78px) */
+.clients__card {
+  width: 180px;
+  height: 78px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+/* Card Hover Scale 1.05 & Blue Glow */
+.clients__item:hover .clients__card {
+  transform: scale(1.05);
+  border-color: #0075FA;
+  box-shadow: 0 10px 28px rgba(0, 117, 250, 0.2), 0 0 0 1px rgba(0, 117, 250, 0.3);
+}
+
+/* Logo Image Inside Card (Larger Scaling) */
+.clients__card-img {
+  max-width: 88%;
+  max-height: 52px;
+  object-fit: contain;
+  filter: contrast(104%);
+  transition: transform 0.25s ease;
+}
+
+.clients__item:hover .clients__card-img {
+  transform: scale(1.03);
+}
+
+/* Company Label Below Card */
+.clients__company-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+/* Tablet & Mobile Responsiveness */
+@media (max-width: 900px) {
+  .clients { padding: 65px 0 75px; }
+  .clients__marquee-track { gap: 24px; padding-right: 24px; }
+  .clients__card { width: 155px; height: 70px; padding: 8px 12px; }
+  .clients__card-img { max-height: 44px; }
+}
+
+@media (max-width: 600px) {
+  .clients { padding: 50px 0 60px; }
+  .clients__marquee-track { gap: 18px; padding-right: 18px; }
+  .clients__card { width: 135px; height: 62px; padding: 6px 10px; }
+  .clients__card-img { max-height: 38px; }
+  .clients__company-name { font-size: 10px; }
+}
+

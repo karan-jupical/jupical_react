@@ -1,0 +1,501 @@
+/* ============================================
+   COMPANY SECTION & NAVIGATION CARDS STYLES
+   ============================================ */
+
+.company-section {
+  padding: 100px 0;
+  background-color: #F6F8FC;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.35s ease;
+}
+
+[data-theme="dark"] .company-section {
+  background-color: #0B0E14;
+}
+
+.company-section__container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- Section Header ---- */
+.company-section__header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px;
+}
+
+.company-section__eyebrow-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.company-section__eyebrow-line {
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #2563EB, #7C3AED);
+}
+
+.company-section__eyebrow-text {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #2563EB;
+}
+
+[data-theme="dark"] .company-section__eyebrow-text {
+  color: #60A5FA;
+}
+
+.company-section__heading {
+  font-size: 40px;
+  font-weight: 700;
+  color: #0B1F33;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  font-family: var(--font-body);
+}
+
+[data-theme="dark"] .company-section__heading {
+  color: #F0F4F8;
+}
+
+.company-section__subheading {
+  font-size: 16.5px;
+  color: #5A6B7C;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+[data-theme="dark"] .company-section__subheading {
+  color: #94A3B8;
+}
+
+/* ---- 3-Column Card Grid Layout ---- */
+.company-section__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* ---- Base Card ---- */
+.company-card {
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid rgba(20, 60, 120, 0.08);
+  border-radius: 22px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 240px;
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(11, 31, 51, 0.04);
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[data-theme="dark"] .company-card {
+  background: #141822;
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.company-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Featured Card 02 (Why Jupical) Visual Accent ---- */
+.company-card--featured::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* ---- Spotlight & Hover Background Effects ---- */
+.company-card__spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    280px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--card-accent-rgb), 0.1),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.company-card__hover-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(var(--card-accent-rgb), 0.03) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+/* ---- Animated Border Highlight (Traveling Light) ---- */
+.company-card__border-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: 22px;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    var(--card-accent) 40deg,
+    transparent 80deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 3;
+}
+
+.company-card:hover .company-card__border-glow {
+  opacity: 0.8;
+  animation: rotateBorder 4s linear infinite;
+}
+
+@keyframes rotateBorder {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ---- Card Hover Main State ---- */
+.company-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(var(--card-accent-rgb), 0.3);
+  box-shadow: 0 16px 36px rgba(11, 31, 51, 0.08), 0 0 20px rgba(var(--card-accent-rgb), 0.12);
+}
+
+[data-theme="dark"] .company-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(var(--card-accent-rgb), 0.2);
+}
+
+.company-card:hover .company-card__spotlight,
+.company-card:hover .company-card__hover-bg {
+  opacity: 1;
+}
+
+/* ---- Card Top Header (Icon + Number) ---- */
+.company-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.company-card__icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--card-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px var(--card-shadow);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+  position: relative;
+}
+
+.company-card:hover .company-card__icon-box {
+  transform: scale(1.08);
+  box-shadow: 0 10px 24px var(--card-shadow);
+}
+
+.company-card__number {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #A0AEC0;
+  opacity: 0.6;
+  transition: color 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+  font-family: var(--font-mono, monospace);
+}
+
+.company-card:hover .company-card__number {
+  color: var(--card-accent);
+  opacity: 1;
+}
+
+/* ---- Icon Specific Hover Animations ---- */
+.company-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.company-icon-svg {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), stroke-width 0.2s ease;
+}
+
+/* Card 01 - About Us */
+.company-icon-bg-line {
+  position: absolute;
+  inset: -4px;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.35s ease;
+}
+.company-icon-sparkles {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  color: #FFD700;
+  opacity: 0.8;
+  transform: scale(0.8);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+.company-card:hover .company-icon--building .company-icon-svg {
+  transform: rotate(4deg);
+}
+.company-card:hover .company-icon-sparkles {
+  transform: scale(1.2) rotate(15deg);
+  opacity: 1;
+}
+
+/* Card 02 - Why Jupical (Target Pulse) */
+.company-target-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--card-accent);
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+.company-card:hover .company-target-pulse-ring {
+  animation: targetPulse 1s ease-out 1;
+}
+@keyframes targetPulse {
+  0% { opacity: 0.8; transform: scale(0.9); }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+.company-target-star {
+  transform-origin: center;
+  transition: transform 0.35s ease;
+}
+.company-card:hover .company-target-star {
+  transform: scale(1.3) rotate(72deg);
+}
+
+/* Card 03 - Our Clients (Network Dots & Lines) */
+.company-network-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.net-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #FFF;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.35s ease;
+}
+.net-dot--1 { top: 10px; right: 10px; }
+.net-dot--2 { bottom: 10px; left: 10px; }
+.company-card:hover .net-dot {
+  opacity: 1;
+}
+.company-card:hover .company-icon--clients .company-icon-svg {
+  transform: scale(1.06);
+}
+
+/* Card 04 - Our Philosophy (Rays Glow) */
+.company-lightbulb-rays {
+  position: absolute;
+  inset: -8px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.ray {
+  position: absolute;
+  background: #FFF;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+.ray-1 { top: 2px; left: 50%; width: 2px; height: 6px; transform: translateX(-50%); }
+.ray-2 { top: 10px; left: 2px; width: 6px; height: 2px; }
+.ray-3 { top: 10px; right: 2px; width: 6px; height: 2px; }
+.company-card:hover .company-lightbulb-rays {
+  opacity: 1;
+}
+.company-card:hover .infinity-filament {
+  stroke: #FFF;
+  stroke-width: 1.8;
+}
+
+/* Card 05 - Blog (Sparkle Float) */
+.company-blog-sparkle {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #FFF;
+  opacity: 0;
+  transform: translateY(6px) scale(0.6);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+.company-card:hover .company-blog-sparkle {
+  opacity: 1;
+  transform: translateY(-4px) scale(1);
+}
+.company-card:hover .company-icon--blog .company-icon-svg {
+  transform: translateY(-1px) scale(1.06);
+}
+
+/* ---- Card Content (Title + Subtitle) ---- */
+.company-card__content {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 24px;
+}
+
+.company-card__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0B1F33;
+  line-height: 1.3;
+  margin-bottom: 6px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease;
+  font-family: var(--font-body);
+}
+
+[data-theme="dark"] .company-card__title {
+  color: #F0F4F8;
+}
+
+.company-card:hover .company-card__title {
+  transform: translateX(3px);
+  color: var(--card-accent);
+}
+
+.company-card__subtitle {
+  font-size: 13.5px;
+  font-weight: 450;
+  color: #64748B;
+  line-height: 1.5;
+  transition: color 0.35s ease;
+}
+
+[data-theme="dark"] .company-card__subtitle {
+  color: #94A3B8;
+}
+
+.company-card:hover .company-card__subtitle {
+  color: #1E293B;
+}
+
+[data-theme="dark"] .company-card:hover .company-card__subtitle {
+  color: #CBD5E1;
+}
+
+/* ---- Bottom Right Arrow Button ---- */
+.company-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 2;
+}
+
+.company-card__arrow-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--card-accent-soft);
+  color: var(--card-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.35s ease, color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="dark"] .company-card__arrow-btn {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.company-card__arrow-btn svg {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.company-card:hover .company-card__arrow-btn {
+  background: var(--card-accent);
+  color: #FFFFFF;
+}
+
+.company-card:hover .company-card__arrow-btn svg {
+  transform: translate(3px, -3px);
+}
+
+/* ---- Responsive Grid Layout Adjustments ---- */
+@media (max-width: 1024px) {
+  .company-section__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .company-section {
+    padding: 64px 0;
+  }
+
+  .company-section__heading {
+    font-size: 28px;
+  }
+
+  .company-section__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .company-card {
+    padding: 24px;
+    min-height: 200px;
+    border-radius: 18px;
+  }
+
+  /* Mobile: Disable heavy cursor spotlight and border rotation */
+  .company-card__spotlight,
+  .company-card__border-glow {
+    display: none !important;
+  }
+}

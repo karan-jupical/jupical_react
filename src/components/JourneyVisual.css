@@ -1,0 +1,239 @@
+/* ============================================
+   JOURNEY VISUAL STYLES — Blue Technology & Infinite Loop
+   ============================================ */
+
+.journey-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  min-height: 540px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  box-shadow: 0 20px 45px -15px rgba(0, 117, 255, 0.15);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  user-select: none;
+}
+
+.journey-visual__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+}
+
+/* Base Image */
+.journey-visual__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  display: block;
+}
+
+/* SVG Path Overlay */
+.journey-visual__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Canvas Particle Overlay */
+.journey-visual__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Rocket Glow */
+.journey-visual__rocket-wrapper {
+  position: absolute;
+  bottom: 12%;
+  left: 20%;
+  width: 50px;
+  height: 50px;
+  z-index: 4;
+  pointer-events: none;
+  animation: rocketFloat 3.5s ease-in-out infinite alternate;
+}
+
+.journey-visual__rocket-glow--blue {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(0, 210, 255, 0.85) 0%, rgba(0, 117, 255, 0) 70%);
+  filter: blur(5px);
+  animation: rocketGlowPulseBlue 2s ease-in-out infinite alternate;
+}
+
+@keyframes rocketFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-7px); }
+}
+
+@keyframes rocketGlowPulseBlue {
+  0% { opacity: 0.5; transform: translateX(-50%) scale(0.9); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1.3); }
+}
+
+/* Center Logo Orb */
+.journey-visual__center-orb--blue {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.journey-visual__orb-ring--blue {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px stroke rgba(0, 210, 255, 0.5);
+  box-shadow: 0 0 22px rgba(0, 117, 255, 0.35);
+  animation: orbRingRotate 10s linear infinite;
+}
+
+.journey-visual__orb-glow--blue {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.35) 0%, rgba(0, 117, 255, 0) 70%);
+  animation: orbPulseBlue 3s ease-in-out infinite alternate;
+}
+
+@keyframes orbPulseBlue {
+  0% { transform: scale(0.92); opacity: 0.5; }
+  100% { transform: scale(1.18); opacity: 0.95; }
+}
+
+@keyframes orbRingRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Spaced Milestone Overlay Cards */
+.journey-visual__milestones {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.journey-visual__card {
+  position: absolute;
+  max-width: 155px;
+  padding: 10px 13px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px -5px rgba(0, 117, 255, 0.08);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, border-color 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+  pointer-events: auto;
+}
+
+/* Upcoming Nodes */
+.journey-visual__card.is-upcoming {
+  opacity: 0.35;
+  transform: scale(0.94) translateY(0);
+  filter: grayscale(0.5);
+}
+
+/* Revealed Persistent Cards */
+.journey-visual__card.is-revealed {
+  opacity: 0.95;
+  transform: scale(1) translateY(0);
+  filter: grayscale(0);
+  border-color: rgba(0, 117, 255, 0.3);
+}
+
+/* Active Highlighted Milestone Step */
+.journey-visual__card.is-active-step {
+  opacity: 1;
+  transform: scale(1.06) translateY(-10px);
+  border-color: #00D2FF;
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.5), 0 12px 28px rgba(0, 117, 255, 0.22);
+  background: #ffffff;
+  z-index: 10;
+}
+
+.journey-visual__card.is-active-step .journey-visual__card-icon {
+  animation: iconPulse 1s ease-in-out;
+}
+
+@keyframes iconPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+.journey-visual__card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.journey-visual__card-icon {
+  font-size: 13px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.journey-visual__card-year {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0075FF;
+  letter-spacing: -0.01em;
+}
+
+.journey-visual__card-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.journey-visual__card-desc {
+  font-size: 9px;
+  line-height: 1.35;
+  color: #475569;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .journey-visual { min-height: 380px; }
+  .journey-visual__card {
+    max-width: 135px;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .journey-visual { min-height: 320px; }
+  .journey-visual__card {
+    max-width: 120px;
+    padding: 6px 8px;
+  }
+  .journey-visual__card-desc { display: none; }
+}
