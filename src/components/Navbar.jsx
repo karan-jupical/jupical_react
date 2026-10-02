@@ -723,7 +723,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const getErpUrl = () => {
-    return 'https://jupical-erp.vercel.app/';
+    return 'https://jupical-erp-zeta.vercel.app/';
   };
 
   const handleErpLogin = (e) => {
